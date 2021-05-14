@@ -6,15 +6,11 @@ images and then calculate angles and decide the temperature of the grill.
 
 Fight me.
 """
-import json
-import os
 import sys
 from numpy import pi
 from numpy import cos
 from numpy import sin
-from numpy import tan
 from numpy import arctan as atan
-from textwrap import dedent
 
 import cv2
 import numpy
@@ -323,7 +319,7 @@ def get_line_points(rho: int, theta: float, screen_dimensions: tuple) -> tuple:
     ------
     tuple
     ((x1: int, y1: int), (x2: int, y2: int))
-    The tuple of points which will draw the line on screen all of the way 
+    The tuple of points which will draw the line on screen all of the way
     across the screen.
     """
     # At pi / 2 cos(theta) = 0 making rho / cos(theta) undefined. This is the
@@ -594,7 +590,6 @@ def degrees_fahrenheit_from_points(needle_point: tuple, circle_center: tuple, ve
     circle_x = circle_center[0]
     circle_y = circle_center[1]
 
-
     # Quadrants are like so:
     #  /--+--\
     # | 2 | 1 |
@@ -626,7 +621,6 @@ def degrees_fahrenheit_from_points(needle_point: tuple, circle_center: tuple, ve
         /
         (circle_x - needle_x)
     )
-    # if verbose:
     if verbose:
         print(f"The raw angle: {raw_angle * (180 / pi)}")
         print(f"The quadrant : {quadrant}")
@@ -645,7 +639,7 @@ def degrees_fahrenheit_from_points(needle_point: tuple, circle_center: tuple, ve
     # the linear relationship between the angle in degrees and the temperature
     # on the grill.
     b = 210
-    m = (MAX_TEMP - MIN_TEMP)  / (MAX_ANGLE - MIN_ANGLE)
+    m = (MAX_TEMP - MIN_TEMP) / (MAX_ANGLE - MIN_ANGLE)
     temp_calc = m * adjusted_angle + b
     if verbose:
         print(f"Maybe this is the temp: {temp_calc:.2f}?")
