@@ -28,7 +28,7 @@ TEXT_HEIGHT = 100
 
 # In degrees here not radians
 MIN_ANGLE = 30
-MAX_ANGLE = 30
+MAX_ANGLE = -210
 
 # This can be fahrenheit or celsius or whatever the gauge is measuring as long
 # as it is linearly measured on the gauge.
@@ -589,9 +589,6 @@ def degrees_fahrenheit_from_points(needle_point: tuple, circle_center: tuple, ve
     int
     The degrees fahrenheit calculated based on the data provided.
     """
-    # min_temp = 150
-    # max_temp = 600
-
     needle_x = needle_point[0]
     needle_y = needle_point[1]
     circle_x = circle_center[0]
@@ -644,8 +641,11 @@ def degrees_fahrenheit_from_points(needle_point: tuple, circle_center: tuple, ve
     if verbose:
         print(f"Adjusted angle: {adjusted_angle}")
 
+    # Using the y = m * x + b formula for the equation for a line to calculate
+    # the linear relationship between the angle in degrees and the temperature
+    # on the grill.
     b = 210
-    m = (600 - 150)  / (-210 - 30)
+    m = (MAX_TEMP - MIN_TEMP)  / (MAX_ANGLE - MIN_ANGLE)
     temp_calc = m * adjusted_angle + b
     if verbose:
         print(f"Maybe this is the temp: {temp_calc:.2f}?")
