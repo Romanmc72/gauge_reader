@@ -30,3 +30,7 @@ I found out by doing this project that I did not pay very close attention in tri
 The OpenCV library uses BGR instead of RGB to encode images in numpy arrays, and the arrangement of pixels is from the perspective of top left to bottom right (as if you were reading a book) instead of how human eyes work where down is down and up is up for a picture. So it is all flipped which is fun for the math parts.
 
 And always remember to have fun!
+
+### Other other things
+
+I started reorganizing the code a little. The `./process_images.sh` should still work, but there are some other files out there right now that are lkind of irrelevant so feel free to ignore them.

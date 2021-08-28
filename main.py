@@ -6,14 +6,18 @@ images and then calculate angles and decide the temperature of the grill.
 
 Fight me.
 """
+from collections import deque
 import sys
+import logging
+
 from numpy import pi
 from numpy import cos
 from numpy import sin
 from numpy import arctan as atan
-
 import cv2
 import numpy
+
+from gauge_reader.trig import *
 
 LINES_TO_RENDER = 2
 VARIANCE_IN_DEGREES = 4
@@ -414,7 +418,7 @@ def doctor_image(image: object, blur_factor: int) -> numpy.array:
     return img
 
 
-def get_line_equation(point_a: tuple, point_b: tuple) -> tuple:
+def c(point_a: tuple, point_b: tuple) -> tuple:
     """
     Description
     -----------
